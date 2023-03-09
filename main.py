@@ -1,6 +1,8 @@
 from curses.ascii import isdigit
 
 MAX_LINES = 3  # this is a global constant, written in all caps by convention.
+MAX_BET = 100
+MIN_BET = 1
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
@@ -18,7 +20,7 @@ def deposit(): # this one will collect user input
 
 def get_number_of_lines():
     while True:  # this is just going to continue to run until we break out of it.
-        lines = input("Enter the numebr of lines to bet on (1- " + str(MAX_LINES) + ")?")
+        lines = input("Enter the number of lines to bet on (1- " + str(MAX_LINES) + ")?")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAX_LINES:
@@ -30,7 +32,24 @@ def get_number_of_lines():
             
     return lines
 
+def get_bet():
+        while True:
+            amount = input("Enter the size of your bet (" + str(MIN_BET) + "-" + str(MAX_BET) + "): $")
+            if amount.isdigit():
+                amount = int(amount)
+                if MIN_BET <= amount <= MAX_BET:
+                    break
+                else:
+                    print(f"The amount must be between ${MIN_BET} - ${MAX_BET}.")
+            else:
+                print("Please enter an amount.")
+
+        return amount
+
 def main():
     balance = deposit()
+    lines = get_number_of_lines()
+    bet = get_bet()
+    print(balance, lines, bet)
 
 main()
