@@ -1,8 +1,24 @@
 from curses.ascii import isdigit
+import random
 
 MAX_LINES = 3  # this is a global constant, written in all caps by convention.
 MAX_BET = 100
 MIN_BET = 1
+
+ROWS = 3
+COLS = 3
+
+symbol_count = {
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D":8
+}
+
+def get_slot_machine_spin(rows, cols, symbols):
+    all_symbols = []
+    for symbol, symbol_count in symbols.items:
+        pass
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
@@ -53,7 +69,7 @@ def main():
         bet = get_bet()
         total_bet = bet * lines
         if total_bet >= balance:
-            print(f"You dont have that much money; your current balance is ${balance}.")
+            print(f"You don't have that much money; your current balance is ${balance}.")
         else:
             break
     print(f"You are betting ${bet} on {lines} lines. The total bet is equal to ${total_bet}.")
