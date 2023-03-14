@@ -17,8 +17,16 @@ symbol_count = {
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
-    for symbol, symbol_count in symbols.items:
-        pass
+    for symbol, symbol_count in symbols.items: # the ".items" syntax gives you both the key and the value associated with a dictionary
+        for _ in range(symbol_count):  # you can use an anonymous variable _ here, if you don't care about the name.
+            all_symbols.append(symbol) # b/c of the embedded for loop, we'll be adding the items (numbers) twice.
+
+    columns = []  # this will be a list of lists to make up the columns
+    for col in range(cols):
+        column = []
+        for row in range(rows): # a bit hard to follow at this point ...
+                pass
+
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
