@@ -24,9 +24,10 @@ def get_slot_machine_spin(rows, cols, symbols):
     columns = []  # this will be a list of lists to make up the columns
     for col in range(cols):
         column = []
+        current_symbols = all_symbols[:] # this syntax *copies* the list all_symbols, and does not turn it into a reference. We need to take options away with each spin and retain the information that it has been removed.
         for row in range(rows): # a bit hard to follow at this point ...
-                pass
-
+            value = random.choice(current_symbols)
+            current_symbols.remove(value) # it finds the first instance of the value in the list and gets rid of it.
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
