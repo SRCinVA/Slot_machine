@@ -22,12 +22,20 @@ def get_slot_machine_spin(rows, cols, symbols):
             all_symbols.append(symbol) # b/c of the embedded for loop, we'll be adding the items (numbers) twice.
 
     columns = []  # this will be a list of lists to make up the columns
-    for col in range(cols):
+    for _ in range(cols):
         column = []
         current_symbols = all_symbols[:] # this syntax *copies* the list all_symbols, and does not turn it into a reference. We need to take options away with each spin and retain the information that it has been removed.
-        for row in range(rows): # a bit hard to follow at this point ...
+        for _ in range(rows): # "rows" gives us the total number of rows we have in the slot machine
             value = random.choice(current_symbols)
             current_symbols.remove(value) # it finds the first instance of the value in the list and gets rid of it.
+            column.append(value) # ... ten we add that value to the column[].
+        
+        columns.append(column) # last, we append that column to the columns list
+
+    return columns
+
+def print_slot_machine(columns):
+    pass
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
