@@ -36,8 +36,9 @@ def get_slot_machine_spin(rows, cols, symbols):
 
 def print_slot_machine(columns): # we need to transpose the matrix in this function
     for row in range(len(columns[0])):  # the length of the row is determined by the length of a column. [0] assumes that there will always be one column.
-        for column in columns: # here, we will only print the index of the current row
-            print(column[row], "|")
+        for i, column in enumerate (columns): # here, we will only print the index of the current row
+            if i != len(columns) -1:
+                print(column[row], "|")  # above, we get the index AND the item itself as we loop through. 
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
