@@ -17,7 +17,7 @@ symbol_count = {
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
-    for symbol, symbol_count in symbols.items: # the ".items" syntax gives you both the key and the value associated with a dictionary
+    for symbol, symbol_count in symbols.items(): # the ".items" syntax gives you both the key and the value associated with a dictionary
         for _ in range(symbol_count):  # you can use an anonymous variable _ here, if you don't care about the name.
             all_symbols.append(symbol) # b/c of the embedded for loop, we'll be adding the items (numbers) twice.
 
@@ -38,7 +38,12 @@ def print_slot_machine(columns): # we need to transpose the matrix in this funct
     for row in range(len(columns[0])):  # the length of the row is determined by the length of a column. [0] assumes that there will always be one column.
         for i, column in enumerate (columns): # here, we will only print the index of the current row
             if i != len(columns) -1:
-                print(column[row], "|")  # above, we get the index AND the item itself as we loop through. 
+                print(column[row], end = " | ")  # above, we get the index AND the item itself as we loop through. 
+            else:
+                print(column[row], end = "")  # don't know why we would *not* have the pipe here.
+                                                # 'end' is by defualt the \n or new line character, to make the print out horizontal
+
+    print()  # basically, thsi will create an empty line
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
@@ -93,5 +98,8 @@ def main():
         else:
             break
     print(f"You are betting ${bet} on {lines} lines. The total bet is equal to ${total_bet}.")
+
+    slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
+    print_slot_machine(slots)
 
 main()
