@@ -15,6 +15,17 @@ symbol_count = {
     "D":8
 }
 
+symbol_value = {
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}
+
+def check_winnings(columns, lines, bet, values):
+    for line in range(lines):
+        pass
+
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
     for symbol, symbol_count in symbols.items(): # the ".items" syntax gives you both the key and the value associated with a dictionary
@@ -42,8 +53,7 @@ def print_slot_machine(columns): # we need to transpose the matrix in this funct
             else:
                 print(column[row], end = "")  # don't know why we would *not* have the pipe here.
                                                 # 'end' is by defualt the \n or new line character, to make the print out horizontal
-
-    print()  # basically, thsi will create an empty line
+        print()  # basically, thsi will create an empty line
 
 def deposit(): # this one will collect user input
     while True: # this is just going to continue to run until we break out of it.
