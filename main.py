@@ -23,8 +23,17 @@ symbol_value = {
 }
 
 def check_winnings(columns, lines, bet, values):
+    winnings = 0 # initialize winnings to $0
     for line in range(lines):
-        pass
+        symbol = columns[0][line] # we get the first element (0) of the line
+        for column in columns:
+            symbol_to_check = column[line] # we need to check each column at position "line" (whether index 1 or 2, checked against index 0)
+            if symbol != symbol_to_check:
+                break # if they're not equal, there's no need to continue, so you break out.
+            else:
+                winnings += values[symbol] * bet # the multiplier for that symbol * whatever bet they made
+    
+    return winnings
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
