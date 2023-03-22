@@ -24,6 +24,7 @@ symbol_value = {
 
 def check_winnings(columns, lines, bet, values):
     winnings = 0 # initialize winnings to $0
+    winning_lines = []
     for line in range(lines):
         symbol = columns[0][line] # we get the first element (0) of the line
         for column in columns:
@@ -31,9 +32,10 @@ def check_winnings(columns, lines, bet, values):
             if symbol != symbol_to_check:
                 break # if they're not equal, there's no need to continue, so you break out.
             else:
-                winnings += values[symbol] * bet # the multiplier for that symbol * whatever bet they made
-    
-    return winnings
+                winnings += values[symbol] * bet # the multiplier for that symbol * whatever bet they made. The bet is for a single line, which we can add to.
+                winning_lines.append(lines + 1) # we add '1' to the index so we can report which line the user won.
+
+    return winnings, winning_lines
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
@@ -120,5 +122,8 @@ def main():
 
     slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
     print_slot_machine(slots)
+    winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)  # no explanation as to why these particular variables are passed in
+    print(f"You won ${winnings}.")
+    print(f"You won on", *winning_lines) # the "splat" or "unpack" operator
 
 main()
