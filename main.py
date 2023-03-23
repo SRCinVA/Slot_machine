@@ -82,7 +82,7 @@ def deposit(): # this one will collect user input
 
 def get_number_of_lines():
     while True:  # this is just going to continue to run until we break out of it.
-        lines = input("Enter the number of lines to bet on (1- " + str(MAX_LINES) + ")?")
+        lines = input("Enter the number of lines to bet on (1-" + str(MAX_LINES) + "). ")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAX_LINES:
@@ -107,9 +107,7 @@ def get_bet():
                 print("Please enter an amount.")
 
         return amount
-
-def main():
-    balance = deposit()
+def spin():
     lines = get_number_of_lines()
     while True:
         bet = get_bet()
@@ -124,6 +122,13 @@ def main():
     print_slot_machine(slots)
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)  # no explanation as to why these particular variables are passed in
     print(f"You won ${winnings}.")
-    print(f"You won on", *winning_lines) # the "splat" or "unpack" operator
+    print(f"You won on lines:", *winning_lines) # the "splat" or "unpack" operator saves us from having to run multiple print statements for each element of the list.
+
+
+
+
+def main():
+    balance = deposit()
+    return winning_lines - total_bet
 
 main()
