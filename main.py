@@ -12,7 +12,7 @@ symbol_count = {
     "A": 2,
     "B": 4,
     "C": 6,
-    "D":8
+    "D": 8
 }
 
 symbol_value = {
@@ -59,7 +59,7 @@ def get_slot_machine_spin(rows, cols, symbols):
 def print_slot_machine(columns): # we need to transpose the matrix in this function
     for row in range(len(columns[0])):  # the length of the row is determined by the length of a column. [0] assumes that there will always be one column.
         for i, column in enumerate (columns): # here, we will only print the index of the current row
-            if i != len(columns) -1:
+            if i != len(columns) - 1:
                 print(column[row], end = " | ")  # above, we get the index AND the item itself as we loop through. 
             else:
                 print(column[row], end = "")  # don't know why we would *not* have the pipe here.
@@ -96,7 +96,7 @@ def get_number_of_lines():
 
 def get_bet():
         while True:
-            amount = input("Enter the size of your bet (" + str(MIN_BET) + "-" + str(MAX_BET) + "): $")
+            amount = input("What would you like to bet on each line? $ ")
             if amount.isdigit():
                 amount = int(amount)
                 if MIN_BET <= amount <= MAX_BET:
@@ -112,7 +112,7 @@ def spin():
     while True:
         bet = get_bet()
         total_bet = bet * lines
-        if total_bet >= balance:
+        if total_bet > balance:
             print(f"You don't have that much money; your current balance is ${balance}.")
         else:
             break
@@ -123,12 +123,18 @@ def spin():
     winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)  # no explanation as to why these particular variables are passed in
     print(f"You won ${winnings}.")
     print(f"You won on lines:", *winning_lines) # the "splat" or "unpack" operator saves us from having to run multiple print statements for each element of the list.
-
+    return winnings - total_bet
 
 
 
 def main():
     balance = deposit()
-    return winning_lines - total_bet
+    while True:
+        print(f"Your current balance is ${balance}")
+        answer = input("Press 'enter' to play or press 'q' to quit).")
+        if answer == "q":
+            break
+        balance += spin() # we'll update the balance based on what spin() tells us.
+    print(f"You left with ${balance}")
 
 main()
