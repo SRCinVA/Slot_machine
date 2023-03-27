@@ -31,9 +31,9 @@ def check_winnings(columns, lines, bet, values):
             symbol_to_check = column[line] # we need to check each column at position "line" (whether index 1 or 2, checked against index 0)
             if symbol != symbol_to_check:
                 break # if they're not equal, there's no need to continue, so you break out.
-            else:
-                winnings += values[symbol] * bet # the multiplier for that symbol * whatever bet they made. The bet is for a single line, which we can add to.
-                winning_lines.append(lines + 1) # we add '1' to the index so we can report which line the user won.
+        else:
+            winnings += values[symbol] * bet # the multiplier for that symbol * whatever bet they made. The bet is for a single line, which we can add to.
+            winning_lines.append(lines + 1) # we add '1' to the index so we can report which line the user won.
 
     return winnings, winning_lines
 
@@ -107,7 +107,7 @@ def get_bet():
                 print("Please enter an amount.")
 
         return amount
-def spin():
+def spin(balance):
     lines = get_number_of_lines()
     while True:
         bet = get_bet()
@@ -134,7 +134,7 @@ def main():
         answer = input("Press 'enter' to play or press 'q' to quit).")
         if answer == "q":
             break
-        balance += spin() # we'll update the balance based on what spin() tells us.
+        balance += spin(balance) # we'll update the balance based on what spin() tells us.
     print(f"You left with ${balance}")
 
 main()
